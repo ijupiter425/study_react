@@ -2,6 +2,25 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Customer from './components/Customer';
+import Customer2 from './components/Customer2';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
+  },
+  table: {
+    minWidth: 1080
+  }
+})
 
 const customers = [ 
   {
@@ -23,7 +42,7 @@ const customers = [
   {
     'id': 3,
     'image': 'https://placeimg.com/64/64/3',
-    'name': '홍길동2',
+    'name': '홍길동3',
     'birthday': '123456',
     'gender': 'man',
     'job': 'programer'
@@ -31,12 +50,24 @@ const customers = [
 ]
 class App extends React.Component {
   render() {
+    const {classes} = this.props;
     return (
-      <div>
-        {
-          customers.map( customer => {
-            return (
-              <Customer
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell>num</TableCell>
+              <TableCell>image</TableCell>
+              <TableCell>name</TableCell>
+              <TableCell>birthday</TableCell>
+              <TableCell>gender</TableCell>
+              <TableCell>job</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody> 
+            { customers.map( customer => {
+              return ( 
+                <Customer2
                 key={customer.id}
                 id={customer.id}
                 image={customer.image}
@@ -44,11 +75,18 @@ class App extends React.Component {
                 birthday={customer.birthday}
                 gender={customer.gender}
                 job={customer.job}
-              />
-            )
-          })
-        }
-      </div>
+                />
+                ) } ) }
+          </TableBody>
+        </Table>
+      </Paper>
+    )
+  }
+}
+
+export default withStyles(styles)(App);
+
+
       // <div className="App">
       //   <header className="App-header">
       //     <img src={logo} className="App-logo" alt="logo" />
@@ -65,8 +103,3 @@ class App extends React.Component {
       //     </a>
       //   </header>
       // </div>
-    );
-  }
-}
-
-export default App;
