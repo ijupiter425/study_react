@@ -8,9 +8,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Toggle />
-    <Clock />
-    <App />
+    <Toggle/>
+    <Clock/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
