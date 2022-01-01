@@ -1,0 +1,7 @@
+{
+  "host": "127.0.0.1",
+  "user": "admin",
+  "password": "ps123!@#",
+  "port": "12000",
+  "database": "web_chat"
+}
