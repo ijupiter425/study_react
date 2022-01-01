@@ -1,11 +1,13 @@
 USE web_chat;
 CREATE TABLE customer(
-	id       INT PRIMARY KEY AUTO_INCREMENT,
-	image    VARCHAR(1024),
-	name     VARCHAR(64),
-	birthday VARCHAR(64),
-	gender   VARCHAR(64),
-	job      VARCHAR(64)
+	id         INT PRIMARY KEY AUTO_INCREMENT,
+	image      VARCHAR(1024),
+	name       VARCHAR(64),
+	birthday   VARCHAR(64),
+	gender     VARCHAR(64),
+	job        VARCHAR(64),
+	createDate datetime default now(),
+	isDelete   int default 0
 )DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
 
   insert into customer values

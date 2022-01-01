@@ -37,10 +37,21 @@ const styles = theme => ({
 props or state => shouldComponentUpdate()
 */
 class App extends React.Component {
-  state = {
-    customers: "",
-    completed: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      customers: "",
+      completed: 0
+    }
   }
+
+  // 화면에 변경되어진 부분만 업데이트 하기 위한 함수.
+  stateRefresh = () => {
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
+  }
+
   componentDidMount() {
     this.timer = setInterval(this.progress, 100);
     this.callApi()
@@ -76,6 +87,7 @@ class App extends React.Component {
                 <TableCell>birthday</TableCell>
                 <TableCell>gender</TableCell>
                 <TableCell>job</TableCell>
+                <TableCell>delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -89,6 +101,7 @@ class App extends React.Component {
                   birthday={customer.birthday}
                   gender={customer.gender}
                   job={customer.job}
+                  stateRefresh={this.stateRefresh}
                   />
                   ) } ) :
                   <TableRow>
@@ -100,7 +113,7 @@ class App extends React.Component {
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd/>
+        <CustomerAdd stateRefresh={this.stateRefresh}/>
       </div>
     )
   }
