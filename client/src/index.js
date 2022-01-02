@@ -5,13 +5,22 @@ import App from './App';
 import Clock from './Clock/Clock';
 import Toggle from './Toggle/Toggle';
 import reportWebVitals from './reportWebVitals';
+import { MuiThemeProvider, createTheme } from '@material-ui/core';
 
+const theme = createTheme({
+  typography: '"Noto Sans KR", serif'
+})
+{/* <React.StrictMode>
+<Toggle/>
+<Clock/>
+<App/>
+</React.StrictMode>, */}
 ReactDOM.render(
-  <React.StrictMode>
-    <Toggle/>
-    <Clock/>
-    <App/>
-  </React.StrictMode>,
+  <MuiThemeProvider theme={theme}>
+    <div>
+      <App/>
+    </div>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 
